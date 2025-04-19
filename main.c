@@ -1,12 +1,25 @@
-#include "libftprintf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/19 19:16:19 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/19 19:16:22 by jleal            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 #include <limits.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-int	main(void)
+/* int	main(void)
 {
 	char c = 'a';
 	char *s = "Hello World!";
+	char *n = NULL;
 	int d = 42;
 	void *p = &d;
 	size_t tot = 0;
@@ -16,9 +29,9 @@ int	main(void)
 	tot = ft_printf("ft_printf\t%%c:\t%c\n", c);
 	ft_printf("total: %d\n\n", tot);
 
-	tot = printf("___printf\t%%s:\t %s\n", s);
+	tot = printf("___printf\t%%s:\t %s null: %s\n", s, n);
 	ft_printf("total: %d\n", tot);
-	tot = ft_printf("ft_printf\t%%s:\t %s\n", s);
+	tot = ft_printf("ft_printf\t%%s:\t %s null: %s\n", s, n);
 	ft_printf("total: %d\n\n", tot);
 
 	tot = printf("___printf\t%%p:\t %p null: %p\n", p, NULL);
@@ -41,8 +54,8 @@ int	main(void)
 	tot = ft_printf("ft_printf\t%%u:\t %u\n", UINT_MAX);
 	ft_printf("total: %d\n\n", tot);
 
-	tot = printf("___printf\t%%xX:\t %x %X\n", INT_MAX, INT_MAX);
+	tot = printf("___printf\t%%xX:\t %x %X\n", -1, -1);
 	ft_printf("total: %d\n", tot);
-	tot = ft_printf("ft_printf\t%%xX:\t %x %X\n", INT_MAX, INT_MAX);
+	tot = ft_printf("ft_printf\t%%xX:\t %x %X\n", -1, -1);
 	ft_printf("total: %d\n\n", tot);
-}
+} */
