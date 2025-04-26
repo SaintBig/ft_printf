@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:50:21 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/26 18:34:13 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/26 19:49:40 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,20 @@ int	ft_printstr(char *str)
 
 static int	ft_findf(va_list args, const char format)
 {
-	char	*dec;
-	char	*hexl;
-	char	*hexu;
-
-	dec = "0123456789";
-	hexl = "0123456789abcdef";
-	hexu = "0123456789ABCDEF";
 	if (format == 's')
 		return (ft_printstr(va_arg(args, char *)));
 	else if (format == 'c')
 		return (ft_printchar((va_arg(args, int))));
 	else if (format == 'd')
-		return (ft_putnbr_base((va_arg(args, int)), dec));
+		return (ft_putnbr_base((va_arg(args, int)), "0123456789"));
 	else if (format == 'u')
-		return (ft_putnbr_base(va_arg(args, unsigned int), dec));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789"));
 	else if (format == 'i')
-		return (ft_putnbr_base(va_arg(args, int), dec));
+		return (ft_putnbr_base(va_arg(args, int), "0123456789"));
 	else if (format == 'x')
-		return (ft_putnbr_base(va_arg(args, unsigned int), hexl));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_putnbr_base(va_arg(args, unsigned int), hexu));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF"));
 	else if (format == 'p')
 		return (print_ptr(va_arg(args, void *)));
 	else if (format == '%')
@@ -84,12 +77,13 @@ int	ft_printf(const char *format, ...)
 
 /* int	main(void)
 {
-	char c = 'a';
+	char c = 'A';
 	char *s = "Hello World!";
 	char *n = NULL;
 	int d = 42;
 	void *p = &d;
-	size_t tot = 0;
+	int tot = 0;
+	int tot2 = 0;
 
 	tot = printf("___printf\t%%c:\t%c\n", c);
 	ft_printf("total: %d\n", tot);
@@ -125,4 +119,18 @@ int	ft_printf(const char *format, ...)
 	ft_printf("total: %d\n", tot);
 	tot = ft_printf("ft_printf\t%%xX:\t %x %X\n", -1, -1);
 	ft_printf("total: %d\n\n", tot);
+
+	printf("==EDGECASES==\n");
+	ft_printf("csdixXpu%");
+	ft_printf("%");
+	ft_printf("");
+	ft_printf("\n");
+	ft_printf("closing terminal...\n\n");
+	int saved_stdout = dup(STDOUT_FILENO);
+	close(STDOUT_FILENO);
+	tot = ft_printf("%s\n", "closed the terminal!!");
+	tot2 = ft_printf("%s\n", "closed the terminal!!");
+	dup2(saved_stdout, STDOUT_FILENO);
+	printf("ft_printf returned %d\n", tot);
+	printf("   printf returned %d\n", tot);
 } */

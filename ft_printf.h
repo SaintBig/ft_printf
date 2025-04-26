@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:40:55 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/26 18:34:20 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/26 19:39:16 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+# include <fcntl.h>
 
 int	ft_printf(const char *format, ...);
 

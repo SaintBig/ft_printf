@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 13:03:23 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/26 18:42:15 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/26 18:52:54 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_putnbr_base(long int nbr, char *base)
 		return (ft_printstr("-9223372036854775807"));
 	if (nbr < 0)
 	{
-		tot += ft_printchar("-");
+		tot += ft_printchar('-');
 		nbr = -nbr;
 	}
 	tot += print_nbr_base(nbr, base);
