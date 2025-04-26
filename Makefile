@@ -1,9 +1,6 @@
 # Variables
 NAME		= libftprintf.a
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -fPIC
-AR			= ar rcs
-RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror
 
 # Source files
 SRCS		= ft_printf.c ft_print_ptr.c ft_print_num.c
@@ -18,16 +15,16 @@ HEADER		= ft_printf.h
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ)
+	rm -f $(OBJS) $(MAIN_OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

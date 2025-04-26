@@ -6,73 +6,123 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:50:21 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/19 17:29:36 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/26 18:34:13 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_printchar(int c)
+int	ft_printchar(int c)
 {
-	return (write(1, &c, 1));
+	write(1, &c, 1);
+	return (1);
 }
 
-static int	ft_printstr(char *str)
+int	ft_printstr(char *str)
 {
-	int	tot;
-
-	tot = 0;
 	if (!str)
-		return (tot += write(1, "(null)", 6));
-	while (*str)
-		tot += write(1, str++, 1);
-	return (tot);
+		return (write(1, "(null)", 6));
+	write(1, str, ft_strlen_new(str));
+	return (ft_strlen_new(str));
 }
 
 static int	ft_findf(va_list args, const char format)
 {
-	int	tot;
+	char	*dec;
+	char	*hexl;
+	char	*hexu;
 
-	tot = 0;
+	dec = "0123456789";
+	hexl = "0123456789abcdef";
+	hexu = "0123456789ABCDEF";
 	if (format == 's')
-		tot += ft_printstr(va_arg(args, char *));
+		return (ft_printstr(va_arg(args, char *)));
 	else if (format == 'c')
-		tot += ft_printchar(va_arg(args, int));
+		return (ft_printchar((va_arg(args, int))));
 	else if (format == 'd')
-		tot += ft_putnbr_base((va_arg(args, int)), "0123456789");
+		return (ft_putnbr_base((va_arg(args, int)), dec));
 	else if (format == 'u')
-		tot += ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
+		return (ft_putnbr_base(va_arg(args, unsigned int), dec));
 	else if (format == 'i')
-		tot += ft_putnbr_base(va_arg(args, int), "0123456789");
+		return (ft_putnbr_base(va_arg(args, int), dec));
 	else if (format == 'x')
-		tot += ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef");
+		return (ft_putnbr_base(va_arg(args, unsigned int), hexl));
 	else if (format == 'X')
-		tot += ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF");
+		return (ft_putnbr_base(va_arg(args, unsigned int), hexu));
 	else if (format == 'p')
-		tot += print_ptr(va_arg(args, void *));
+		return (print_ptr(va_arg(args, void *)));
 	else if (format == '%')
-		tot += write(1, "%", 1);
-	return (tot);
+		return (ft_printchar('%'));
+	return (0);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list		args;
+	int			i;
 	int			tot;
 
+	if (!format || (*format == '%' && *(format + 1) == '\0'))
+		return (-1);
 	va_start(args, format);
+	i = 0;
 	tot = 0;
-	while (*format)
+	while (format[i])
 	{
-		if (*format == '%')
+		if (format[i] == '%' && format[i + 1])
 		{
-			format++;
-			tot += ft_findf(args, *format);
-			format++;
+			tot += ft_findf(args, format[i + 1]);
+			i++;
 		}
 		else
-			tot += write(1, format++, 1);
+			tot += ft_printchar(format[i]);
+		i++;
 	}
 	va_end(args);
 	return (tot);
 }
+
+/* int	main(void)
+{
+	char c = 'a';
+	char *s = "Hello World!";
+	char *n = NULL;
+	int d = 42;
+	void *p = &d;
+	size_t tot = 0;
+
+	tot = printf("___printf\t%%c:\t%c\n", c);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%c:\t%c\n", c);
+	ft_printf("total: %d\n\n", tot);
+
+	tot = printf("___printf\t%%s:\t %s null: %s\n", s, n);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%s:\t %s null: %s\n", s, n);
+	ft_printf("total: %d\n\n", tot);
+
+	tot = printf("___printf\t%%p:\t %p null: %p\n", p, NULL);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%p:\t %p null: %p\n", p, NULL);
+	ft_printf("total: %d\n\n", tot);
+
+	tot = printf("___printf\t%%d:\t min( %d ) max( %d )\n", INT_MIN, INT_MAX);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%d:\t min( %d ) max( %d )\n", INT_MIN, INT_MAX);
+	ft_printf("total: %d\n\n", tot);
+
+	tot = printf("___printf\t%%i:\t min( %i ) max( %i )\n", INT_MIN, INT_MAX);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%i:\t min( %i ) max( %i )\n", INT_MIN, INT_MAX);
+	ft_printf("total: %d\n\n", tot);
+
+	tot = printf("___printf\t%%u:\t %u\n", UINT_MAX);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%u:\t %u\n", UINT_MAX);
+	ft_printf("total: %d\n\n", tot);
+
+	tot = printf("___printf\t%%xX:\t %x %X\n", -1, -1);
+	ft_printf("total: %d\n", tot);
+	tot = ft_printf("ft_printf\t%%xX:\t %x %X\n", -1, -1);
+	ft_printf("total: %d\n\n", tot);
+} */

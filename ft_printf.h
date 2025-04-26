@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 17:40:55 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/19 17:20:41 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/26 18:34:20 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
 
 int	ft_printf(const char *format, ...);
 
 int	print_ptr(void *ptr);
 
 int	ft_putnbr_base(long int nbr, char *base);
+
+int	ft_strlen_new(char *s);
+
+int	ft_printchar(int c);
+
+int	ft_printstr(char *str);
 
 #endif

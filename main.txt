@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:16:19 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/19 19:16:22 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/22 16:05:54 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* int	main(void)
+int	main(void)
 {
 	char c = 'a';
 	char *s = "Hello World!";
@@ -58,4 +58,4 @@
 	ft_printf("total: %d\n", tot);
 	tot = ft_printf("ft_printf\t%%xX:\t %x %X\n", -1, -1);
 	ft_printf("total: %d\n\n", tot);
-} */
+}
