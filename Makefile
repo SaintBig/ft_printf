@@ -1,17 +1,13 @@
-# Variables
 NAME		= libftprintf.a
+
 CFLAGS		= -Wall -Wextra -Werror
 
-# Source files
-SRCS		= ft_printf.c ft_print_ptr.c ft_print_num.c
+SRCS		= ft_printf.c ft_printf_utils.c
 
-# Object files
 OBJS		= $(SRCS:.c=.o)
 
-# Header file
 HEADER		= ft_printf.h
 
-# Rules
 all: $(NAME)
 
 $(NAME): $(OBJS)

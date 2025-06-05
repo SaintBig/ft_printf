@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:50:21 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/26 19:49:40 by jleal            ###   ########.fr       */
+/*   Updated: 2025/05/09 20:43:26 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,17 @@ int	ft_printf(const char *format, ...)
 
 	printf("==EDGECASES==\n");
 	ft_printf("csdixXpu%");
+	ft_printf("\n");
+	//printf("csdixXpu%");
+	//ft_printf("\n");
 	ft_printf("%");
+	ft_printf("\n");
+	//printf("%");
+	//ft_printf("\n");
 	ft_printf("");
 	ft_printf("\n");
+	//printf("");
+	//ft_printf("\n");
 	ft_printf("closing terminal...\n\n");
 	int saved_stdout = dup(STDOUT_FILENO);
 	close(STDOUT_FILENO);
